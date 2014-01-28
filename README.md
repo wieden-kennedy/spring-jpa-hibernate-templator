@@ -8,21 +8,23 @@ The templator builds the configuration files, the model class files, the service
 	src
 	|---main
 		|---java
-			|---com
-				|---package
-					|---identifier
-						|---config
-						|   |---AbstractAppConfig.java (Abstract parent class)
-						|   |---ApplicationConfig.java
-						|---model
-						|   |---Car.java
-						|---repository
-						|   |---CarRepository.java
-						|   |---ModelRepository.java (base interface)
-						|---service
-						|   |---CarService.java
-						|   |---CarServiceImpl.java
-						|   |---ModelService (base interface)
+		|	|---com
+		|		|---package
+		|			|---identifier
+		|				|---config
+		|				|   |---AbstractAppConfig.java (Abstract parent class)
+		|				|   |---ApplicationConfig.java
+		|				|---model
+		|				|   |---Car.java
+		|				|---repository
+		|				|   |---CarRepository.java
+		|				|   |---ModelRepository.java (base interface)
+		|				|---service
+		|				|   |---CarService.java
+		|				|   |---CarServiceImpl.java
+		|				|   |---ModelService (base interface)
+		|---resources
+			|---application.properties
 							
 
 ##Usage
