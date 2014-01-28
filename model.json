@@ -1,0 +1,62 @@
+{
+    "basepackage":"com.wk.lodge.spring.jpatemplate",
+    "properties_file_name":"application.properties",
+    "group_id":"com.wk.lodge",
+    "artifact_id":"com.wk.lodge.spring.jpatemplate",
+    "package_name":"spring-jpa-hibernate-rdbms",
+    "application_properties":{
+        "database_username":"db_user",
+        "database_password":"********",
+        "database_url":"db.host.url",
+        "database_databasename":"DATABASE",
+        "database_flavor":"mysql",
+        "hibernate_dialect":"MySQL5Dialect"
+    },
+    "models": [
+        {
+            "model_name":"Car",
+            "id_type": "Long",
+            "member_variables":[
+                {
+                    "field_name": "inserted",
+                    "type": "long",
+                    "column": "INSERTED_AT"
+                },
+                {
+                    "field_name":"model",
+                    "type":"String",
+                    "column":"MODEL"
+                },
+                {
+                    "field_name":"make",
+                    "type":"String",
+                    "column":"MAKE"
+                },
+                {
+                    "field_name":"color",
+                    "type":"String",
+                    "column":"COLOR"
+                },
+                {
+                    "field_name": "year",
+                    "type": "int",
+                    "column": "YEAR"
+                }
+            ],
+            "additional_query_methods":[
+                {
+                    "name":"findMadeEarlierThan",
+                    "returns":"List<Car>",
+                    "query":"SELECT c FROM Car c WHERE c.year < :year",
+                    "params":[
+                        {
+                            "name":"year",
+                            "type":"int"
+                        }
+                    ]
+                }
+             ]
+        }
+    ]
+    
+}

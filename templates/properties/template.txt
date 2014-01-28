@@ -1,0 +1,9 @@
+db.driver=com.${database_flavor}.jdbc.Driver
+db.username=${database_username}
+db.password=${database_password}
+db.url=jdbc:${database_flavor}://${database_url}:3306/${database_databasename}
+
+hibernate.dialect=org.hibernate.dialect.${hibernate_dialect}
+hibernate.show.sql=true
+
+entitymanager.packages.to.scan=${basepackage}

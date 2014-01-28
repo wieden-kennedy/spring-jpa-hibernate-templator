@@ -1,0 +1,8 @@
+public ${type} get${Member}(){
+    return this.${member};
+}
+
+public void set${Member}(${type} ${member}){
+    this.${member} = ${member};
+}
+

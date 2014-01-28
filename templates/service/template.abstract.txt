@@ -1,0 +1,47 @@
+package ${basepackage}.service;
+
+#license
+
+import java.io.Serializable;
+import java.util.List;
+
+//<editor-fold desc="----------> usage">
+/*
+    Extending the ModelService as a concrete interface is pretty straightforward - just pick your type, and implement:
+
+    public interface CarService extends ModelService<Car>{
+        Car create(Car c);
+        Car update(Car c);
+        Car find(Long id);
+        List<Car> findAll();
+        boolean delete(Long id);
+
+        ...plus any other methods you need...
+    }
+
+    The concrete implementation can be done as one would normally implement an interface. One thing to keep in mind,
+    however, is the autowired repository class via setter injection:
+
+    public ModelServiceImpl implements ModelService<Model>{
+        private ModelRepositoryImpl modelRepositoryImpl;
+
+        public ModelServiceImpl(){]
+
+        @Autowired
+        public void setModelRepositoryImpl(ModelRepositoryImpl modelRepositoryImpl){
+            this.modelRepositoryImpl = modelRepositoryImpl;
+        }
+
+        ...implemented methods...
+    }
+ */
+//</editor-fold>
+
+public interface ModelService<T> {
+    T create(T t);
+    T update(T t);
+    T find(Serializable id);
+    List<T> findAll();
+    boolean delete(Serializable id);
+}
+

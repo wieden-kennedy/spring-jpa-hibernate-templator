@@ -1,0 +1,5 @@
+    @Bean(name="${model}Service")
+    public ${Model}Service get${Model}Service(){
+        return new ${Model}ServiceImpl();
+    }
+

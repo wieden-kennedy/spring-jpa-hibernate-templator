@@ -1,0 +1,5 @@
+/*
+    Sample license file!
+    Created by Keith Hamilton, 2014
+    Package generated using spring-data-jpa-templator
+*/

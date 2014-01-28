@@ -1,0 +1,17 @@
+package ${basepackage}.service;
+
+#license
+
+import java.util.List;
+import java.io.Serializable;
+import ${basepackage}.model.${Model};
+import ${basepackage}.service.ModelService;
+
+public interface ${Model}Service extends ModelService<${Model}>{
+    ${T} create(${T} ${t});
+    ${T} update(${T} ${t});
+    ${T} find(Serializable id);
+    List<${T}> findAll();
+    boolean delete(Serializable id);
+}
+

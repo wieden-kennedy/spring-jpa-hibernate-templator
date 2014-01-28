@@ -1,0 +1,56 @@
+package ${basepackage}.config;
+
+#license
+
+import org.springframework.core.env.Environment;
+import org.springframework.orm.jpa.JpaTransactionManager;
+import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+
+import javax.annotation.Resource;
+import javax.sql.DataSource;
+import java.util.Properties;
+
+//<editor-fold desc="------> usage">
+/*
+    To see a concrete implementation of this class, see test/java/com/wk/lodge/spring/jpatemplate/test/config/ApplicationTestConfig
+
+    It is worth noting that in a final implementation you may want to use a PropertySource for populating the protected member variables,
+    and that could be accomplished in the concrete class as follows:
+
+    @Configuration
+    @EnableJpaRepositories(basePackages = "com.wk.lodge.spring.jpatemplate.repository")
+    @ComponentScan(basePackages = "com.wk.lodge.spring.jpatemplate")
+    @PropertySource("classpath:/application.properties")
+    public class ApplicationConfig extends AppConfig{
+
+        protected @Value("hibernate.dialect") String HIBERNATE_DIALECT;
+        protected @Value("hibernate.show.sql") String HIBERNATE_SHOW_SQL;
+        protected @Value("entitymanager.packages.to.scan") ENTITYMANAGER_PACKAGES_TO_SCAN;
+        ...and so on
+
+    }
+
+ */
+//</editor-fold>
+
+public abstract class AbstractAppConfig {
+
+    private String HIBERNATE_DIALECT;
+    private String HIBERNATE_SHOW_SQL;
+    private String[] ENTITYMANAGER_PACKAGES_TO_SCAN;
+
+    private String DATABASE_DRIVER;
+    private String DATABASE_USER;
+    private String DATABASE_PASSWORD;
+    private String DATABASE_URL;
+
+    @Resource
+    protected Environment environment;
+
+    public AbstractAppConfig(){ super(); }
+
+    public abstract DataSource dataSource();
+    public abstract JpaTransactionManager transactionManager();
+    public abstract LocalContainerEntityManagerFactoryBean entityManagerFactory();
+    public abstract Properties hibernateProperties();
+}

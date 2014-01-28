@@ -1,0 +1,32 @@
+package ${basepackage}.repository;
+
+#license
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import java.io.Serializable;
+
+//<editor-fold desc="-----> usage>
+/*
+    Extending the ModelRepository base interface is very simple. To make a basic subclass, you would need to create a new
+    file, and insert the following:
+
+    public interface MyRepository extends ModelRepository<MyModel,MyModelIdType>{}
+
+    This will give you the basic CRUD functionality you will need to persist data to an RDBMS.
+
+    To add custom methods that perform specific queries, you can use the @Query annotation above the method with
+    the specific query as the only value:
+
+    // using @Param to name the parameter(s)
+    @Query("SELECT m from MyModel m WHERE m.insertedAt < :inserted")
+    public List<SomeModel> getInsertedBefore(@Param("inserted") long insertedAt);
+
+    // using positional argument notation to insert params into the query
+    @Query("SELECT m from MyModel m WHERE m.insertedAt < ?1")
+    public List<SomeModel> getInsertedBefore(long insertedAt);
+
+ */
+//</editor-fold>
+
+public interface ModelRepository<T, ID extends Serializable> extends JpaRepository<T, Serializable> {
+}

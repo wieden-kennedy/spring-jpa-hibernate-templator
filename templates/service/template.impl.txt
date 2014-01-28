@@ -1,0 +1,56 @@
+package ${basepackage}.service;
+
+#license
+
+import java.util.List;
+import java.io.Serializable;
+import ${basepackage}.model.${Model};
+import ${basepackage}.repository.${Model}Repository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service("${model}Service")
+public class ${Model}ServiceImpl implements ${Model}Service{
+    private ${Model}Repository ${model}Repository;
+
+    public ${Model}ServiceImpl(){}
+
+    @Autowired
+    public void set${Model}Repository(${Model}Repository ${model}Repository){
+        this.${model}Repository = ${model}Repository;
+    }
+
+    @Override
+    public ${T} create(${T} ${t}){
+        return this.${model}Repository.save(${t});
+    }
+
+    @Override
+    public ${T} update(${T} ${t}){
+        return this.${model}Repository.save(${t});
+    }
+
+    @Override
+    public ${T} find(Serializable id){
+        return this.${model}Repository.findOne(id);
+    }
+
+    @Override
+    public List<${T}> findAll(){
+        return this.${model}Repository.findAll();
+    }
+
+    @Override
+    public boolean delete(Serializable id){
+        try{
+            this.${model}Repository.delete(id);
+            return true;
+        }
+        catch(Exception e){
+            return false;
+        }
+    }
+
+    #additional_methods
+}
+
