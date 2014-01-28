@@ -161,6 +161,11 @@ If you would prefer to not add in query methods before you run templator, you ca
 
 2. You can build the jar as is by passing the -j flag to the run. After you bring in the jar, just extend the repository and service classes, adding in your own query methods as you wish.
 
+###Give it a spin
+To see what happens when you run the templator, clone this repo down, cd into it, and run:
+
+    python main.py -f ./templates/_samples/sample_model.json -l ./templates/_samples/sample_license.txt -o /tmp/sample-persistence-layer
+
 
 ###To-do:
  - write tests

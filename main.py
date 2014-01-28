@@ -16,7 +16,7 @@ import argparse
 
 def parse_args():
     parser = argparse.ArgumentParser(description="command line args to assist configure templator")
-    parser.add_argument('-f',type=str,dest='f',help='add the full path to your models (json) file',required=False)
+    parser.add_argument('-f',type=str,dest='f',help='add the full path to your models (json) file',required=True)
     parser.add_argument('-l',type=str,dest='l',help='add the full path to your licensing text file, if present',required=False)
     parser.add_argument('-j',help='create a jar package from this build',action='store_true')
     parser.add_argument('-i',help='install the jar package on the local system (packages to ./target by default)',action='store_true')
@@ -39,14 +39,19 @@ if __name__ == '__main__':
     JAVA_SOURCE_PATH='src/main/java'
     BASE_PACKAGE=None
     CWD=getcwd()
-    MODELS_FILE='./model.json'
+    MODELS_FILE=None
     LICENSING_FILE=None
     models=[]
 
-    if args.f:
+    if match('^\.\/',args.f):
+        MODELS_FILE = join(CWD,args.f)
+    else:
         MODELS_FILE = args.f
     if args.l:
-        LICENSING_FILE=join(CWD,args.l)
+        if match('^\.\/',args.l):
+            LICENSING_FILE=join(CWD,args.l)
+        else:
+            LICENSING_FILE = args.l
 
     # read in the models JSON file        
     with open(MODELS_FILE) as data_file:
