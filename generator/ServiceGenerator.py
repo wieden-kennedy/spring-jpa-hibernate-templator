@@ -77,7 +77,7 @@ class ServiceGenerator(Generator):
             out_line = out_line.replace('${Serializable}', self.model['id_type'])
 
             if search('#additional_methods',out_line):
-                if self.model['additional_query_methods']:
+                if 'additional_query_methods' in self.model:
                     for method in self.model['additional_query_methods']:
                         params = ''
                         args = ''
