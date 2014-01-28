@@ -1,5 +1,4 @@
 ##spring+jpa+hibernate+rdbms
-#=======================
 
 Take your modeling needs into account, then skip worrying about setting up your Spring Data JPA persistence layer. All you need is one or more models, and the details for your POM.xml file defined in a JSON file, and a few command-line flags.
 
@@ -9,21 +8,23 @@ The templator builds the configuration files, the model class files, the service
 	src
 	|---main
 		|---java
-			|---com
-				|---package
-					|---identifier
-						|---config
-						|   |---AbstractAppConfig.java (Abstract parent class)
-						|   |---ApplicationConfig.java
-						|---model
-						|   |---Car.java
-						|---repository
-						|   |---CarRepository.java
-						|   |---ModelRepository.java (base interface)
-						|---service
-						|   |---CarService.java
-						|   |---CarServiceImpl.java
-						|   |---ModelService (base interface)
+		|	|---com
+		|		|---package
+		|			|---identifier
+		|				|---config
+		|				|   |---AbstractAppConfig.java (Abstract parent class)
+		|				|   |---ApplicationConfig.java
+		|				|---model
+		|				|   |---Car.java
+		|				|---repository
+		|				|   |---CarRepository.java
+		|				|   |---ModelRepository.java (base interface)
+		|				|---service
+		|				|   |---CarService.java
+		|				|   |---CarServiceImpl.java
+		|				|   |---ModelService (base interface)
+		|---resources
+			|---application.properties
 							
 
 ##Usage
@@ -132,6 +133,7 @@ and don't forget those command line options (none required, but all useful):
     -o outpath where the source directory should be saved (defaults to current working directory)
     -j create a jar package
     -i install the jar package locally instead of outputting to [out_path]/target/
+    -l path to license file to be added to top of each generated class
 
 
 And shazzam! You've got the source and jar files for wiring up a persistence layer built on Spring Data JPA using Hibernate.
@@ -169,5 +171,6 @@ To see what happens when you run the templator, clone this repo down, cd into it
 
 ###To-do:
  - write tests
+ - add in exception handling and error checking
  - add (better) support for additional service/repository methods with @Query
 
