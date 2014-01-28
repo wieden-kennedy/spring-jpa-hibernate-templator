@@ -164,5 +164,6 @@ If you would prefer to not add in query methods before you run templator, you ca
 
 ###To-do:
  - write tests
+ - add in exception handling and error checking
  - add (better) support for additional service/repository methods with @Query
 
