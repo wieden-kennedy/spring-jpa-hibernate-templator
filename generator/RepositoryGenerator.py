@@ -37,7 +37,7 @@ class RepositoryGenerator(Generator):
             out_line = line
 
             out_line = out_line.replace('${basepackage}', self.basepackage)
-            out_line = out_line.replace('${model}', model_name.lower())
+            out_line = out_line.replace('${model}', model_name[0].lower()+model_name[1:])
             out_line = out_line.replace('${Model}', model_name)
             out_line = out_line.replace('${T}', model_name)
             out_line = out_line.replace('${ID}', self.model['id_type'])

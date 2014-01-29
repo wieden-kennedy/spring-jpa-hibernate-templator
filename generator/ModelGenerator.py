@@ -14,7 +14,7 @@ class ModelGenerator(Generator):
             
             out_line = out_line.replace('${basepackage}',self.basepackage_path.replace('/','.'))
             out_line = out_line.replace('${model_name}', model_name)
-            out_line = out_line.replace('${MODEL}', '%sS' % model_name.upper())
+            out_line = out_line.replace('${TABLE}', '%s' % self.model['table'].upper())
             out_line = out_line.replace('${idType}', self.model['id_type'])
 
 
@@ -47,8 +47,9 @@ class ModelGenerator(Generator):
                     self.out_file.write('\t@JoinColumn(name="%s")\n' % member['foreign_key'])
                 if 'use_primary_key' in member:
                     self.out_file.write('\t@PrimaryKeyJoinColumn\n')
-                if 'column' in member:
-                    self.out_file.write('\t@Column(name = "%s")\n' % member['column'])
+                if not 'relationship_type' in member:
+                    if 'column' in member:
+                        self.out_file.write('\t@Column(name = "%s")\n' % member['column'].upper())
                 self.out_file.write('\t%s %s %s;\n\n' % (protection,member['type'],member['field_name']))
         
         self.out_file.write('\n')

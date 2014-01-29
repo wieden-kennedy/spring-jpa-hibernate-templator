@@ -5,7 +5,7 @@ package ${basepackage}.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "${MODEL}")
+@Table(name = "${TABLE}")
 public class ${model_name} {
 
     @Id

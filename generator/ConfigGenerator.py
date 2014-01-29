@@ -14,7 +14,7 @@ class ConfigGenerator(Generator):
             model_name=model['model_name']
             for line in serviceBeanData:
                 out_line = line
-                out_line = out_line.replace('${model}',model_name.lower())
+                out_line = out_line.replace('${model}',model_name[0].lower()+model_name[1:])
                 out_line = out_line.replace('${Model}','%s%s' % (model_name[0].upper(),model_name[1:]))
                 self.out_file.write(out_line)
 
@@ -47,7 +47,7 @@ class ConfigGenerator(Generator):
         if not exists('./%s/%s/AbstractAppConfig.java' % (self.basepackage_path,self.type)):
             self.generate_abstract_config()
 
-        self.out_file = open('./%s/%s/ApplicationConfig.java' % (self.basepackage_path,self.type), 'w')
+        self.out_file = open(self.out_path, 'w')
 
         for line in self.template_data:
             out_line = line
@@ -81,5 +81,5 @@ class ConfigGenerator(Generator):
         self.template_data = self.get_template_data()
         if not exists('./%s/%s' % (self.basepackage_path,self.type)):
             mkdir('./%s/%s' % (self.basepackage_path,self.type))
-        self.set_out_path('./%s/%s/ApplicationConfig.java' % (self.basepackage_path,self.type))
+        self.set_out_path('./%s/%s/PersistenceConfig.java' % (self.basepackage_path,self.type))
         self.generate_class()

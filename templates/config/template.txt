@@ -25,9 +25,9 @@ import java.util.Properties;
 
 @Configuration
 @EnableJpaRepositories(basePackages = "${basepackage}.repository")
-@ComponentScan(basePackages = "${basepackage}.model")
+@ComponentScan(basePackages = "${basepackage}")
 @PropertySource("classpath:/${propertiesFileName}")
-public class ApplicationConfig extends AbstractAppConfig {
+public class PersistenceConfig extends AbstractAppConfig {
 
     /*
         To have these values populate properly, create a properties file in your classpath
@@ -46,7 +46,7 @@ public class ApplicationConfig extends AbstractAppConfig {
     @Resource
     private Environment environment;
 
-    #serviceBeanDefs
+    
     @Override
     @Bean
     public DataSource dataSource() {
@@ -72,7 +72,7 @@ public class ApplicationConfig extends AbstractAppConfig {
         LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
 
         entityManagerFactoryBean.setDataSource(dataSource());
-        entityManagerFactoryBean.setPackagesToScan(environment.getRequiredProperty(ENTITYMANAGER_PACKAGES_TO_SCAN));
+        entityManagerFactoryBean.setPackagesToScan(new String[]{environment.getRequiredProperty(ENTITYMANAGER_PACKAGES_TO_SCAN)});
 
         final HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
 
@@ -90,4 +90,6 @@ public class ApplicationConfig extends AbstractAppConfig {
         hibernateProperties.put(HIBERNATE_SHOW_SQL, environment.getRequiredProperty(HIBERNATE_SHOW_SQL));
         return hibernateProperties;
     }
+
+    #serviceBeanDefs
 }
