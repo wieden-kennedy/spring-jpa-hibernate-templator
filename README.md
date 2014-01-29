@@ -2,6 +2,9 @@
 
 Take your modeling needs into account, then skip worrying about setting up your Spring Data JPA persistence layer. All you need is one or more models, and the details for your POM.xml file defined in a JSON file, and a few command-line flags.
 
+#####Licensing
+This repository is licensed under the BSD 3-Clause license, which you can find [here](LICENSE)
+
 ##What gets included when the templator is run?
 The templator builds the configuration files, the model class files, the service class files, and the repository class files based on your JSON document. A typical output directory would look like this, using the below 'Car' model as an example:
 
