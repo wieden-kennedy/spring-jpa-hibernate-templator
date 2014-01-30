@@ -7,7 +7,7 @@ This repository is licensed under the BSD 3-Clause license, which you can find [
 
 ##Table of Contents
 
-- [What gets included in the templator output?](#what-gets-included-when-the-templator-is-run?)
+- [What gets included in the templator output?](#what-gets-included-when-the-templator-is-run)
 - [Usage](#usage)
     - [Running the templator](#running-the-templator)
     - [Required fields](#required-fields)
