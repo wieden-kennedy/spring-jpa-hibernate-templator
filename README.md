@@ -5,6 +5,22 @@ Take your modeling needs into account, then skip worrying about setting up your 
 #####Licensing
 This repository is licensed under the BSD 3-Clause license, which you can find [here](LICENSE)
 
+##Table of Contents
+
+- [What gets included in the templator output?](#what-gets-included-when-the-templator-is-run?)
+- [Usage](#usage)
+    - [Running the templator](#running-the-templator)
+    - [Required fields](#required-fields)
+    - [Optional fields](#optional-fields)
+    - [Sample configuration file](#sample-configuration-file)
+- [Additional repository methods](#additional-repository-methods)
+- [Related entities (one-to-one, one-to-many)](#related-entities)
+- [Sample build](#sample-build)
+- [Known issues](#known-issues)
+- [To do](#to-do)
+
+
+
 ##What gets included when the templator is run?
 The templator builds the configuration files, the model class files, the service class files, and the repository class files based on your JSON document. A typical output directory would look like this, using the below 'Car' model as an example:
 
@@ -61,7 +77,8 @@ Secondly, you'll need is a JSON file that defines the POM.xml and model attribut
  		- column
  
 ####Optional fields (under models)
- see "Additional repository methods" below.  			
+Currently the only optional fields that you need to know about are for adding [additional repository methods](#additional-repository-methods)
+		
 ####Sample configuration file 		
 
     {
@@ -166,22 +183,25 @@ If you would prefer to not add in query methods before you run templator, you ca
 
 2. You can build the jar as is by passing the -j flag to the run. After you bring in the jar, just extend the repository and service classes, adding in your own query methods as you wish.
 
-###Related Entities/OneToOne/OneToMany
+###Related Entities
 While adding support is in the works for related entities by OneToOne or OneToMany relationships, eager/lazy loading, et al, at present it is best to render the templated persistence layer, then add your own relationship annotations and markup after outputting the source directory to an output path of your choosing:
 
 1. Run the templator as described above, making sure to add an output path using the -o parameter.
 2. Open your new persistence source and add your relationships/annotations and/or additional query methods you will need to relate and query them.
 3. Run a maven install from the root directory of your persistence layer.
- 
 
-###Give it a spin
+
+###Sample Build
 To see what happens when you run the templator, clone this repo down, cd into it, and run:
 
     python main.py -f ./templates/_samples/sample_model.json -l ./templates/_samples/sample_license.txt -o /tmp/sample-persistence-layer
 
+###Known Issues
+Error handling for required properties that are not included in the models JSON file has not yet been added. Omitting any of the above-listed required properties will throw an error in the build process.
 
-###To-do:
+###To-do
  - write tests
  - add in exception handling and error checking
  - add (better) support for additional service/repository methods with @Query
+ - add in support for relating entities
 
