@@ -72,7 +72,7 @@ public class PersistenceConfig extends AbstractAppConfig {
         LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
 
         entityManagerFactoryBean.setDataSource(dataSource());
-        entityManagerFactoryBean.setPackagesToScan(new String[]{environment.getRequiredProperty(ENTITYMANAGER_PACKAGES_TO_SCAN)});
+        entityManagerFactoryBean.setPackagesToScan(new String[]{environment.getRequiredProperty(ENTITYMANAGER_PACKAGES_TO_SCAN)${additional_entity_packages}});
 
         final HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
 

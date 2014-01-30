@@ -166,6 +166,14 @@ If you would prefer to not add in query methods before you run templator, you ca
 
 2. You can build the jar as is by passing the -j flag to the run. After you bring in the jar, just extend the repository and service classes, adding in your own query methods as you wish.
 
+###Related Entities/OneToOne/OneToMany
+While adding support is in the works for related entities by OneToOne or OneToMany relationships, eager/lazy loading, et al, at present it is best to render the templated persistence layer, then add your own relationship annotations and markup after outputting the source directory to an output path of your choosing:
+
+1. Run the templator as described above, making sure to add an output path using the -o parameter.
+2. Open your new persistence source and add your relationships/annotations and/or additional query methods you will need to relate and query them.
+3. Run a maven install from the root directory of your persistence layer.
+ 
+
 ###Give it a spin
 To see what happens when you run the templator, clone this repo down, cd into it, and run:
 

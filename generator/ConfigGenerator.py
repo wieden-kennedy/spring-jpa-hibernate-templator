@@ -54,6 +54,7 @@ class ConfigGenerator(Generator):
 
             out_line = out_line.replace('${basepackage}', self.basepackage)
             out_line = out_line.replace('${propertiesFileName}', self.properties_file_name)
+            out_line = out_line.replace('${additional_entity_packages}',',%s' % ','.join(self.packages_to_scan))
 
             if search('#serviceBeanDefs', out_line):
                 self.generate_service_beans()
@@ -74,6 +75,11 @@ class ConfigGenerator(Generator):
 
     def set_properties_file(self,properties_file_name):
         self.properties_file_name = properties_file_name
+
+    def set_additional_entity_packages(self,packages):
+        self.packages_to_scan = []
+        for package in packages:
+            self.packages_to_scan.append('"%s"' % package)
 
     def generate(self):
         chdir(self.root_dir)

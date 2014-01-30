@@ -9,7 +9,7 @@ from generator.PropertiesGenerator import PropertiesGenerator
 from os import getcwd, mkdir, chdir
 from os.path import exists, join
 from subprocess import call
-from shutil import move
+from shutil import move, rmtree
 from re import match
 
 import json
@@ -97,6 +97,8 @@ if __name__ == '__main__':
     # generate config class
     config_generator = ConfigGenerator('config',CWD,BASE_PACKAGE,JAVA_SOURCE_PATH,None)
     config_generator.set_models(models)
+    if 'additional_entity_packages' in MODELS_DATA:
+        config_generator.set_additional_entity_packages(MODELS_DATA['additional_entity_packages'])
     config_generator.set_properties_file(MODELS_DATA['properties_file_name'])
     if LICENSING_FILE:
         config_generator.set_licensing(LICENSING_FILE)
@@ -109,6 +111,8 @@ if __name__ == '__main__':
     if args.o:
         chdir(CWD)
         source_root = JAVA_SOURCE_PATH.split('/')[0]
+        if exists(join(args.o,source_root)):
+            rmtree(join(args.o,source_root))
         move(source_root,join(args.o,source_root))
         move('pom.xml',join(args.o,'pom.xml'))
         CWD=args.o
@@ -116,4 +120,3 @@ if __name__ == '__main__':
     if args.j:
         chdir(CWD)
         jarThis(args.i)
-

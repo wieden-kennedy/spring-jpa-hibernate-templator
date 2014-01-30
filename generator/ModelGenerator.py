@@ -37,16 +37,16 @@ class ModelGenerator(Generator):
         for member in self.model['member_variables']:
             protection = 'private'
             if not member['field_name'] == 'id':
-                if 'maps_id' in member or 'relationship_type' in member or 'foreign_key' in member:
-                    protection = 'public'
-                if 'maps_id' in member:
-                    self.out_file.write('\t@MapsId\n')
-                if 'relationship_type' in member:
-                    self.out_file.write('\t@%s\n' % member['relationship_type'])
-                if 'foreign_key' in member:
-                    self.out_file.write('\t@JoinColumn(name="%s")\n' % member['foreign_key'])
-                if 'use_primary_key' in member:
-                    self.out_file.write('\t@PrimaryKeyJoinColumn\n')
+                # if 'maps_id' in member or 'relationship_type' in member or 'foreign_key' in member:
+                #     protection = 'public'
+                # if 'maps_id' in member:
+                #     self.out_file.write('\t@MapsId\n')
+                # if 'relationship_type' in member:
+                #     self.out_file.write('\t@%s\n' % member['relationship_type'])
+                # if 'foreign_key' in member:
+                #     self.out_file.write('\t@JoinColumn(name="%s")\n' % member['foreign_key'])
+                # if 'use_primary_key' in member:
+                #     self.out_file.write('\t@PrimaryKeyJoinColumn\n')
                 if not 'relationship_type' in member:
                     if 'column' in member:
                         self.out_file.write('\t@Column(name = "%s")\n' % member['column'].upper())

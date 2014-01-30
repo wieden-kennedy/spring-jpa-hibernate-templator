@@ -9,6 +9,12 @@ class PropertiesGenerator(Generator):
         application_properties_data = application_properties.readlines()
         application_properties.close()
 
+        packages_to_scan = []
+        packages_to_scan.append(self.basepackage)
+        if 'additional_entity_packages' in self.properties:
+            for package in self.properties['additional_entity_packages']:
+                packages_to_scan.append(package)
+
         self.out_file=open(self.out_path, 'w')
         for line in application_properties_data:
             out_line = line
@@ -16,7 +22,7 @@ class PropertiesGenerator(Generator):
             out_line = out_line.replace('${database_password}',self.properties['database_password'])
             out_line = out_line.replace('${database_url}',self.properties['database_url'])
             out_line = out_line.replace('${database_databasename}',self.properties['database_databasename'])
-            out_line = out_line.replace('${basepackage}', self.basepackage)
+            out_line = out_line.replace('${basepackage}', '.'.join(packages_to_scan))
             out_line = out_line.replace('${database_flavor}', self.properties['database_flavor'])
             out_line = out_line.replace('${hibernate_dialect}', self.properties['hibernate_dialect'])
 
